@@ -8,14 +8,15 @@ Create feed to REST API using GPT
 npm install react-native-gpt-api-feed
 ```
 
+## Setup
+1. open ai 계정을 생성한다.
+2. https://platform.openai.com/api-keys 에서 API key를 발급받는다.
+3. https://platform.openai.com/settings/organization/billing/overview 에서 크래딧 충전한다.
+
 ## Usage
 
 ```js
-import { multiply } from 'react-native-gpt-api-feed';
-
-// ...
-
-const result = await multiply(3, 7);
+// 준비 중
 ```
 
 ## Contributing
