@@ -1,18 +1,23 @@
 import * as React from 'react';
-
 import { StyleSheet, View, Text } from 'react-native';
-import { multiply } from 'react-native-gpt-api-feed';
+import { LLMClient } from 'react-native-gpt-api-feed';
+
+import { OPENAI_API_KEY } from '../config.json';
 
 export default function App() {
-  const [result, setResult] = React.useState<number | undefined>();
+  const [answer, setAnswer] = React.useState<string>('');
 
   React.useEffect(() => {
-    multiply(3, 7).then(setResult);
+    (async () => {
+      LLMClient.setOpenAiApiKey(OPENAI_API_KEY);
+      const answer = await LLMClient.askToGPT_3_dot_5('Hi ChatGPT!');
+      setAnswer(answer);
+    })();
   }, []);
 
   return (
     <View style={styles.container}>
-      <Text>Result: {result}</Text>
+      <Text>answer: {answer}</Text>
     </View>
   );
 }
