@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 export class LLMClient {
-  private static apiKey: string;
+  private static openAiApiKey: string;
 
   // -------- Above Private --------
 
@@ -10,11 +10,11 @@ export class LLMClient {
       return;
     }
 
-    this.apiKey = key;
+    this.openAiApiKey = key;
   }
 
   public static async askToGPT_3_dot_5(question: string): Promise<string> {
-    if (!LLMClient.apiKey) {
+    if (!LLMClient.openAiApiKey) {
       throw new Error('API key not set');
     }
 
@@ -25,9 +25,8 @@ export class LLMClient {
         messages: [
           {
             role: 'system',
-            content: 'You are a helpful assistant.',
-            // TODO: RESTful API를 위한 적절한 프롬프트로 대체해보자.
-            // content: 'You are an assistant who helps create params for RESTful API.'
+            content:
+              'You are an assistant who helps create params for RESTful API.',
           },
           {
             role: 'user',
@@ -38,12 +37,12 @@ export class LLMClient {
       {
         headers: {
           'Content-Type': 'application/json',
-          'Authorization': `Bearer ${LLMClient.apiKey}`,
+          'Authorization': `Bearer ${LLMClient.openAiApiKey}`,
         },
       }
     );
 
-    console.log(response);
+    console.log(response.data.choices[0].message.content);
 
     return response.data.choices[0].message.content;
   }

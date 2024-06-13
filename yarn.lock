@@ -4232,6 +4232,16 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@wayne-kim/react-native-layout@npm:^0.3.3":
+  version: 0.3.3
+  resolution: "@wayne-kim/react-native-layout@npm:0.3.3"
+  peerDependencies:
+    react: "*"
+    react-native: "*"
+  checksum: 845a870ac71ed488e26cd42aab60c4fbd8bfd5d38c39cf3aa5c55a4cfe43f4090d727ce138d1c390a1eebb9db8c4aa7700d90e0674e15d45ab197a4a29ed757a
+  languageName: node
+  linkType: hard
+
 "@webassemblyjs/ast@npm:1.12.1, @webassemblyjs/ast@npm:^1.12.1":
   version: 1.12.1
   resolution: "@webassemblyjs/ast@npm:1.12.1"
@@ -14637,6 +14647,7 @@ __metadata:
   dependencies:
     "@babel/core": ^7.20.0
     "@expo/webpack-config": ^18.0.1
+    "@wayne-kim/react-native-layout": ^0.3.3
     babel-loader: ^8.1.0
     babel-plugin-module-resolver: ^5.0.0
     expo: ~51.0.13
