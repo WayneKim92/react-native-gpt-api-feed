@@ -52,10 +52,16 @@ ${apiParamType}}
       const json = JSON.parse(answer);
       setAnswer(JSON.stringify(json, null, 2));
     })();
-  }, [message]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <View style={styles.container}>
+      <Text>API의 매개변수 정보</Text>
+      <Text>{apiParamType.trim()}</Text>
+
+      <Spacer size={16} />
+
       <Text>메타 정보</Text>
       <Text>{meta.trim()}</Text>
 
