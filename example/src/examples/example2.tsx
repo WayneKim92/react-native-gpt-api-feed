@@ -2,6 +2,7 @@ import * as React from 'react';
 import { StyleSheet, View, Text, Image, Button, TextInput } from 'react-native';
 import { LLMClient } from 'react-native-gpt-api-feed';
 import { Spacer } from '@wayne-kim/react-native-layout';
+import { isEmpty } from 'lodash';
 
 import { OPENAI_API_KEY } from '../../config.json';
 
@@ -82,7 +83,11 @@ ${apiParamType}}
 
       <Text>답변</Text>
       <Text>
-        {isFailed ? '사용불가 형식 입니다.' : JSON.stringify(answer, null, 2)}
+        {isFailed
+          ? '사용불가 형식 입니다.'
+          : isEmpty(answer)
+            ? ''
+            : JSON.stringify(answer, null, 2)}
       </Text>
 
       <Spacer size={16} />
