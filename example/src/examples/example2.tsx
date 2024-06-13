@@ -1,11 +1,14 @@
 import * as React from 'react';
-import { StyleSheet, View, Text, Image } from 'react-native';
+import { StyleSheet, View, Text, Image, Button, TextInput } from 'react-native';
 import { LLMClient } from 'react-native-gpt-api-feed';
 import { Spacer } from '@wayne-kim/react-native-layout';
 
 import { OPENAI_API_KEY } from '../../config.json';
 
 export default function App() {
+  const [question, setQuestion] = React.useState<string>(
+    '세로가 더 긴 직사각형 이미지 표시해라'
+  );
   const [answer, setAnswer] = React.useState<{
     width: number;
     height: number;
@@ -30,8 +33,6 @@ interface GetPlaceholderImageParams {
   height: number;
 }
  `;
-
-  const question = '세로가 더 긴 직사각형 이미지 표시해라';
   const message = `
 # 메타 정보
 ${meta.trim()}
@@ -46,20 +47,17 @@ ${apiParamType}}
 - 질문: "${question}"
 `;
 
-  React.useEffect(() => {
-    (async () => {
-      try {
-        LLMClient.setOpenAiApiKey(OPENAI_API_KEY);
-        const answer = await LLMClient.askToGPT_3_dot_5(message);
-        const json = JSON.parse(answer);
-        setAnswer(json);
-      } catch (error) {
-        setIsFailed(true);
-        console.error(error);
-      }
-    })();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  const handlePress = async () => {
+    try {
+      LLMClient.setOpenAiApiKey(OPENAI_API_KEY);
+      const answer = await LLMClient.askToGPT_3_dot_5(message);
+      const json = JSON.parse(answer);
+      setAnswer(json);
+    } catch (error) {
+      setIsFailed(true);
+      console.error(error);
+    }
+  };
 
   return (
     <View style={styles.container}>
@@ -74,7 +72,14 @@ ${apiParamType}}
       <Spacer size={16} />
 
       <Text>질문</Text>
-      <Text>{question.trim()}</Text>
+      <Spacer size={8} />
+      <TextInput
+        value={question}
+        onChangeText={setQuestion}
+        style={{ padding: 16, borderColor: 'lightblue', borderWidth: 1 }}
+      />
+      <Spacer size={8} />
+      <Button title={'요청'} onPress={handlePress} />
 
       <Spacer size={16} />
 
