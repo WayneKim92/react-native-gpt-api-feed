@@ -10,12 +10,9 @@ export default function App() {
     '세로가 더 긴 직사각형 이미지 표시해라'
   );
   const [answer, setAnswer] = React.useState<{
-    width: number;
-    height: number;
-  }>({
-    width: 0,
-    height: 0,
-  });
+    width?: number;
+    height?: number;
+  }>({});
   const [isFailed, setIsFailed] = React.useState(false);
 
   const meta = `
@@ -92,10 +89,10 @@ ${apiParamType}}
 
       <Text>샘플 이미지</Text>
       <Image
-        src={`https://placehold.co/${answer.width}x${answer.height}`}
+        src={`https://placehold.co/${answer?.width}x${answer?.height}`}
         style={{
-          width: answer.width,
-          height: answer.height,
+          width: answer?.width,
+          height: answer?.height,
           backgroundColor: 'blue',
         }}
       />
