@@ -2,6 +2,9 @@
 
 Create feed to REST API using GPT
 
+# Example
+https://github.com/WayneKim92/react-native-gpt-api-feed/pull/4#issue-2351282060
+
 ## Installation
 
 ```sh
